@@ -1,6 +1,7 @@
 package com.wooeky.lecture.todo.service;
 
 import com.wooeky.lecture.comment.dto.CommentResponse;
+import com.wooeky.lecture.log.service.LogService;
 import com.wooeky.lecture.manager.dto.ManagerResponse;
 import com.wooeky.lecture.todo.dto.TodoRequest;
 import com.wooeky.lecture.todo.dto.TodoResponse;
@@ -16,10 +17,13 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TodoService {
     private final TodoRepository todoRepository;
+    private final LogService logService;
 
     @Transactional
     public void saveTodo(TodoRequest todoRequest) {
-        todoRepository.save(new Todo(todoRequest));
+        Todo todo = todoRepository.save(new Todo(todoRequest));
+        logService.saveLog(todo.getTitle()); // 강제 에러가 발생해도 REQUIRES_NEW 전파옵션에 의해 로그가 저장됨
+        throw new RuntimeException("강제 에러 발생");
     }
 
     public Todo getTodoEntity(long todoId) {
