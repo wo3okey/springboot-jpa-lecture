@@ -31,7 +31,7 @@ public class TodoController {
     }
 
     @GetMapping("/api/v1/todos/{todoId}")
-    public ResponseEntity<TodoResponse> getTodo(@PathVariable long todoId) {
+    public ResponseEntity<TodoResponse> getTodo(@PathVariable Long todoId) {
         return ResponseEntity.ok(todoService.getTodo(todoId));
     }
 }
