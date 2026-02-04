@@ -11,6 +11,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
@@ -34,8 +35,9 @@ public class Todo {
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "todo_id")
     private List<Comment> comments = new ArrayList<>();
-    @OneToMany(mappedBy = "todo")
-    private List<Manager> managers = new ArrayList<>();
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "manager_id")
+    private Manager manager;
 
     public Todo(TodoRequest todoRequest) {
         this.title = todoRequest.getTitle();

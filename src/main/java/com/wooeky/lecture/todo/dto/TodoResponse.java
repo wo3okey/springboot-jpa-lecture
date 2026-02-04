@@ -14,5 +14,5 @@ public class TodoResponse {
     final String title;
     final String contents;
     final List<CommentResponse> comments;
-    final List<ManagerResponse> managers;
+    final ManagerResponse manager;
 }

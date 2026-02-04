@@ -37,7 +37,7 @@ public class TodoService {
                 todo.getTitle(),
                 todo.getContents(),
                 todo.getComments().stream().map(comment -> new CommentResponse(comment.getId(), comment.getContents())).toList(),
-                todo.getManagers().stream().map(manager -> new ManagerResponse(manager.getId(), manager.getName())).toList()
+                new ManagerResponse(todo.getManager().getId(), todo.getManager().getName())
         );
     }
 
@@ -51,7 +51,7 @@ public class TodoService {
                                 todo.getTitle(),
                                 todo.getContents(),
                                 todo.getComments().stream().map(comment -> new CommentResponse(comment.getId(), comment.getContents())).toList(),
-                                todo.getManagers().stream().map(manager -> new ManagerResponse(manager.getId(), manager.getName())).toList()
+                                todo.getManager() != null ? new ManagerResponse(todo.getManager().getId(), todo.getManager().getName()) : null
                         )
                 ).toList();
     }

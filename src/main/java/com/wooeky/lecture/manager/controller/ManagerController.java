@@ -5,7 +5,6 @@ import com.wooeky.lecture.manager.service.ManagerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -13,11 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class ManagerController {
     private final ManagerService managerService;
 
-    @PostMapping("/api/v1/managers")
+    @PostMapping("/api/v1/todos/{todoId}/managers")
     public void saveManager(
-            @RequestParam long todoId,
             @RequestBody ManagerRequest managerRequest
     ) {
-        managerService.saveManager(todoId, managerRequest);
+        managerService.saveManager(managerRequest);
     }
 }

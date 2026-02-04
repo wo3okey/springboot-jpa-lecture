@@ -12,12 +12,10 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @RequiredArgsConstructor
 public class ManagerService {
-    private final TodoService todoService;
     private final ManagerRepository managerRepository;
 
     @Transactional
-    public void saveManager(long todoId, ManagerRequest managerRequest) {
-        Todo todo = todoService.getTodoEntity(todoId);
-        managerRepository.save(new Manager(todo, managerRequest));
+    public void saveManager(ManagerRequest managerRequest) {
+        managerRepository.save(new Manager(managerRequest));
     }
 }
